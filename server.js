@@ -25,16 +25,12 @@ if (process.env.NODE_ENV !== "production") {
 		})
 	);
 	app.use(require("webpack-hot-middleware")(compiler));
-	// } else {
-	// 	app.get("/", function(req, res) {
-	// 		res.sendFile(path.join(__dirname, "dist/index.html"));
-	// 	});
 }
 
 // Socket.io serverSocket
 const io = require("socket.io")(http);
 
-mongoose.connect("mongodb+srv://jingch:jingch1213@cluster0-fpbbn.gcp.mongodb.net/test?retryWrites=true", {
+mongoose.connect("mogodb-URL", {
 	useNewUrlParser: true,
 });
 var db = mongoose.connection;
@@ -50,7 +46,6 @@ var leaderboard = [];
 
 const addFoods = () => {
 	let totalFoodMass = cfg.totalFoodMass;
-	console.log(totalFoodMass);
 	while (totalFoodMass > 0) {
 		const x = util.randomPos().x;
 		const y = util.randomPos().y;
@@ -66,7 +61,6 @@ const addFoods = () => {
 			color: color,
 		});
 	}
-	console.log(totalFoodMass);
 };
 
 const addFood = f => {
@@ -107,10 +101,8 @@ const addVirus = v => {
 addFoods();
 addViruses();
 
-// db.once("open", () => {
-// console.log("MongoDB connected!");
 io.on("connection", socket => {
-	console.log("socket connect", socket.id);
+	console.log("socket connect");
 	var username;
 	socket.on("login", user => {
 		console.log(user.username + " login");
@@ -154,11 +146,12 @@ io.on("connection", socket => {
 					if (!players[user.uid]) {
 						return;
 					}
-					if (players[user.uid].Totalmass > maxMass) {
-						maxMass = players[user.uid].Totalmass;
-					}
 				};
 				await check();
+
+				if (players[user.uid].Totalmass > maxMass) {
+					maxMass = players[user.uid].Totalmass;
+				}
 				movePlayer(players[user.uid]);
 				socket.emit("serverTellPlayerMove", {
 					x: players[user.uid].x,
@@ -179,8 +172,10 @@ io.on("connection", socket => {
 			delete players[user.uid];
 		});
 		socket.on("move", move => {
-			players[user.uid].target.x = move.mouseX;
-			players[user.uid].target.y = move.mouseY;
+			if (players[user.uid]) {
+				players[user.uid].target.x = move.mouseX;
+				players[user.uid].target.y = move.mouseY;
+			}
 		});
 		const movePlayer = player => {
 			let x = 0,
@@ -266,16 +261,13 @@ io.on("connection", socket => {
 		});
 	});
 	socket.on("message", data => {
-		console.log(data);
 		const msg = {
 			name: username,
 			msg: data,
 		};
 		socket.broadcast.emit("updateMsg", msg);
-		console.log("fin");
 	});
 });
-// });
 
 const handleSplit = (mode, player, c) => {
 	const splitCell = cell => {
@@ -314,7 +306,6 @@ var C = SAT.Circle;
 
 const handlePlayer = uid => {
 	var player = players[uid];
-	const radius = util.massToRadius(player.Totalmass);
 
 	player.cells.map(c => {
 		let radius = util.massToRadius(c.mass);
@@ -364,8 +355,6 @@ const handlePlayer = uid => {
 };
 
 http.listen(port, function(err) {
-	// if (process.env.NODE_ENV !== "production") {
-	// 	openBrowsers("http://localhost:3300");
-	// }
+	// openBrowsers("http://localhost:3300");
 	console.log("Listening at *:3300");
 });

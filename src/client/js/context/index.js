@@ -44,7 +44,6 @@ function reducer(state, action) {
 		case "disconnect":
 			return { ...state, ...{ disconnect: action.payload } };
 		case "UPDATE_USER_MESSAGE":
-			console.log(action.payload, state.messages);
 			return { ...state, ...{ messages: state.messages.concat(action.payload) } };
 		default:
 			return state;

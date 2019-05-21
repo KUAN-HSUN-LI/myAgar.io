@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useContext, useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const chatInput = props => {
 	const [message, setMessage] = useState("");

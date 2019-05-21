@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useContext, useState, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import ChatList from "../component/chatList";
 import ChatInput from "../component/chatInput";
 import { Context } from "../context";
@@ -8,7 +8,6 @@ const Chat = props => {
 	useEffect(() => {
 		state.socket.on("updateMsg", data => {
 			dispatch({ type: "UPDATE_USER_MESSAGE", payload: data });
-			console.log(state.messages);
 		});
 	}, []);
 

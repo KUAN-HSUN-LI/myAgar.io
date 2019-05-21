@@ -39,8 +39,8 @@ const drawPlayer = (ctx, player) => {
 		ctx.textAlign = "center";
 		ctx.textBaseline = "middle";
 		ctx.font = "bold " + fontSize + "px sans-serif";
-		ctx.strokeText(e.mass, e.x, e.y);
-		ctx.fillText(e.mass, e.x, e.y);
+		ctx.strokeText(player.username, e.x, e.y);
+		ctx.fillText(player.username, e.x, e.y);
 	});
 };
 
@@ -58,10 +58,6 @@ const init = () => {
 	let mass = cfg.defaultPlayerMass;
 	let color = randomColor();
 	return { x, y, mass, color };
-};
-
-const generateid = name => {
-	return name + new Date().getTime() + "" + Math.floor(Math.random() * 999 + 1);
 };
 
 export { massToRadius, randomPos, init, drawPlayer, drawVirus, drawFood, randomColor };

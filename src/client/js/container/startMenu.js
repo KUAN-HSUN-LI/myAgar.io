@@ -13,8 +13,8 @@ const StartMenu = () => {
 	const [user, setUsername] = useState();
 
 	const validNick = name => {
-		let regex = /^\w*$/;
-		return regex.exec(name) !== null;
+		var name = name.trim();
+		return name ? true : false;
 	};
 
 	const handleKeyPress = e => {
