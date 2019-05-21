@@ -29,7 +29,7 @@ if (process.env.NODE_ENV !== "production") {
 // Socket.io serverSocket
 const io = require("socket.io")(http);
 
-mongoose.connect("mongodb+srv://jingch:jingch1213@cluster0-fpbbn.gcp.mongodb.net/test?retryWrites=true", {
+mongoose.connect("mongodb-URL", {
 	useNewUrlParser: true,
 });
 var db = mongoose.connection;
