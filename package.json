@@ -1,0 +1,48 @@
+{
+  "name": "websocket-react-chatroom",
+  "version": "1.0.0",
+  "description": "A chatroom powered by React and Websocket",
+  "main": "index.js",
+  "scripts": {
+    "test": "",
+    "start": "nodemon --exec babel-node server.js",
+    "prod": "NODE_ENV=production node server.js",
+    "build": "webpack -p --config webpack.config.prod.js",
+    "server": "run-s build prod",
+    "lint": "eslint src --fix --ext .js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/preset-react": "^7.0.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-loader": "^8.0.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.22.0",
+    "clean-webpack-plugin": "^2.0.1",
+    "css-loader": "^2.1.1",
+    "express": "^4.14.1",
+    "html-webpack-plugin": "^3.2.0",
+    "mongodb": "^3.2.3",
+    "mongoose": "^5.5.5",
+    "react": "^16.7.0-alpha.0",
+    "react-dom": "^16.7.0-alpha.0",
+    "sat": "^0.7.1",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0",
+    "style-loader": "^0.13.1",
+    "webpack": "^4.29.6",
+    "webpack-hot-middleware": "^2.16.1"
+  },
+  "devDependencies": {
+    "@babel/node": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "nodemon": "^1.19.0",
+    "open-browsers": "^1.1.1",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-middleware": "^1.12.2",
+    "webpack-dev-server": "^3.3.1"
+  }
+}
