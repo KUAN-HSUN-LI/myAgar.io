@@ -6,6 +6,7 @@
 	"gameWidth": 5000,
 	"gameHeight": 5000,
 	"totalFoodMass": 2000,
+	"mergeTimer": 15,
 	"maxFood": 1000,
 	"maxVirus": 50,
 	"slowBase": 4.5,
