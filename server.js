@@ -11,7 +11,6 @@ const http = require("http").Server(app);
 const port = process.env.PORT || 3300;
 
 const Record = require("./src/models/Record");
-// const Message = require("./src/models/Message");
 
 // compile react
 if (process.env.NODE_ENV !== "production") {
