@@ -355,6 +355,6 @@ const handlePlayer = uid => {
 };
 
 http.listen(port, function(err) {
-	// openBrowsers("http://localhost:3300");
+	openBrowsers("http://localhost:3300");
 	console.log("Listening at *:3300");
 });
