@@ -6,7 +6,7 @@
 	"scripts": {
 		"test": "",
 		"start": "nodemon --exec babel-node server.js",
-		"build": "webpack -p --config webpack.config.js"
+		"build": "webpack --exec babel-node --config webpack.config.js"
 	},
 	"license": "MIT",
 	"dependencies": {
